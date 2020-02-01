@@ -7,24 +7,22 @@ public class MoleMovement : MonoBehaviour
     public float movementSpeed = 5f;
     public Animator animator;
     public Rigidbody2D rb;
-
+  
     Vector2 movement;
-    float TimeCounter=0;
+    float TimeCounter = 0;
     // Start is called before the first frame update
     void Start()
     {
 
-    }
+}
 
     // Update is called once per frame
     void Update()
     {
-        //Counting the time
-        TimeCounter += Time.fixedDeltaTime;
-
-        //Setting circular position coordinates of Mole
-        float PosX = Mathf.Cos(TimeCounter);
-        float PosY = Mathf.Sin(TimeCounter);
+        TimeCounter += Time.fixedDeltaTime;                     //Counting the time 
+        //Setting circular position coordinates of Mole    
+         float PosX = Mathf.Cos(TimeCounter);
+         float PosY = Mathf.Sin(TimeCounter);
         float PosZ = 0;
 
         //Circular rotation
@@ -41,4 +39,13 @@ public class MoleMovement : MonoBehaviour
         //actual movement of character is being done here to avoid frame rate issues
         rb.MovePosition(rb.position + movement * movementSpeed * Time.fixedDeltaTime);
     }
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            print("HITHIT");
+
+        }
+    }
 }
+

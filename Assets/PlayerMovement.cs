@@ -34,4 +34,11 @@ public class PlayerMovement : MonoBehaviour
         //actual movement of character is being done here to avoid frame rate issues
         rb.MovePosition(rb.position + movement * movementSpeed * Time.fixedDeltaTime);
     }
+    private void OnCollisionEnter2D(Collision2D colll)
+    {
+        if (colll.gameObject.tag == "Player")
+        {
+            print("HIT");
+        }
+    }
 }
