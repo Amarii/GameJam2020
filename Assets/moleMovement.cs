@@ -22,7 +22,7 @@ public class MoleMovement : MonoBehaviour
     {
         if(collide == 0)
         {
-            Circle();                               //creates a circular movement
+           // Circle();                               //creates a circular movement
         }
         else
         {
@@ -51,7 +51,6 @@ public class MoleMovement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         collide = 1;
-        print("Hallo");
     }
 
 }
