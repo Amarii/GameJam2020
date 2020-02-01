@@ -5,9 +5,9 @@ using UnityEngine;
 public class moleMovement : MonoBehaviour
 {
     public float movementSpeed = 5f;
-    Animator animator;
+    public Animator animator;
     Vector2 movement;
-    Rigidbody rb;
+    public Rigidbody2D rb;
 
 
     // Start is called before the first frame update
