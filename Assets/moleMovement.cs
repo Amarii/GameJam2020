@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class moleMovement : MonoBehaviour
+public class MoleMovement : MonoBehaviour
 {
     public float movementSpeed = 5f;
     public Animator animator;
-    Vector2 movement;
     public Rigidbody2D rb;
 
-
+    Vector2 movement;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
