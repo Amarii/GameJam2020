@@ -64,6 +64,9 @@
   <ItemGroup>
     <Compile Include="Assets\MoleMovement.cs" />
     <Compile Include="Assets\PlayerMovement.cs" />
+    <None Include="Assets\Pixel Art Icon Pack - RPG\Shader\SH UI Icon Outline Color.shader" />
+    <None Include="Assets\Pixel Art Icon Pack - RPG\Shader\SH Sprite Icon Outline Color.shader" />
+    <None Include="Assets\BayatGames\Free Platform Game Assets\Readme.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Rainb/Documents/GitHub/GameJam2020/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
