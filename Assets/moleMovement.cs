@@ -9,7 +9,8 @@ public class MoleMovement : MonoBehaviour
     public Rigidbody2D rb;
   
     Vector2 movement;
-    float TimeCounter = 0;
+    float TimeCounter=0;                            //circular movement (Circle function)
+    float collide = 0;                              // check if mole collides with player                                  
     // Start is called before the first frame update
     void Start()
     {
@@ -19,33 +20,38 @@ public class MoleMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TimeCounter += Time.fixedDeltaTime;                     //Counting the time 
-        //Setting circular position coordinates of Mole    
-         float PosX = Mathf.Cos(TimeCounter);
-         float PosY = Mathf.Sin(TimeCounter);
-        float PosZ = 0;
+        if(collide == 0)
+        {
+            Circle();
+        }
+        else
+        {
 
-        //Circular rotation
-        transform.position = new Vector3(PosX, PosY, PosZ);
-
+        }
+                                                      //creates a circular movement
+            
         //sets the variable for the animator in unity depending on the movement
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
     }
 
-    void FixedUpdate()
+    void Circle()
     {
-        //actual movement of character is being done here to avoid frame rate issues
-        rb.MovePosition(rb.position + movement * movementSpeed * Time.fixedDeltaTime);
-    }
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.tag == "Player")
-        {
-            print("HITHIT");
+        TimeCounter += Time.fixedDeltaTime;                     //Counting the time 
+                                                                //Setting circular position coordinates of Mole    
+        float PosX = Mathf.Cos(TimeCounter);
+        float PosY = Mathf.Sin(TimeCounter);
 
-        }
+        //Circular rotation
+        transform.position = new Vector2(PosX, PosY);
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        collide = 1;
+        print("Hallo");
+    }
+
 }
 
