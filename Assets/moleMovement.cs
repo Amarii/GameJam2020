@@ -22,13 +22,13 @@ public class MoleMovement : MonoBehaviour
     {
         if(collide == 0)
         {
-            Circle();
+            Circle();                               //creates a circular movement
         }
         else
         {
 
         }
-                                                      //creates a circular movement
+                                                      
             
         //sets the variable for the animator in unity depending on the movement
         animator.SetFloat("Horizontal", movement.x);
@@ -47,6 +47,7 @@ public class MoleMovement : MonoBehaviour
         transform.position = new Vector2(PosX, PosY);
     }
 
+    //Checks if objects collide
     private void OnCollisionEnter2D(Collision2D collision)
     {
         collide = 1;
