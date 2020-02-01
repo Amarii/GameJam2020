@@ -19,9 +19,9 @@ public class MoleMovement : MonoBehaviour
     void Update()
     {
         //sets the horizontal keys(A,D,Left,Right) to the x movement
-        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.x = movementSpeed*Time.fixedDeltaTime;
         //sets the vertical keys(W,S,Up,Down) to the y movement
-        movement.y = Input.GetAxisRaw("Vertical");
+        movement.y = movementSpeed*Time.fixedDeltaTime;
 
         //sets the variable for the animator in unity depending on the movement
         animator.SetFloat("Horizontal", movement.x);
