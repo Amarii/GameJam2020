@@ -9,6 +9,7 @@ public class MoleMovement : MonoBehaviour
     public Rigidbody2D rb;
 
     Vector2 movement;
+    float TimeCounter=0;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,10 +19,16 @@ public class MoleMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //sets the horizontal keys(A,D,Left,Right) to the x movement
-        movement.x = movementSpeed*Time.fixedDeltaTime;
-        //sets the vertical keys(W,S,Up,Down) to the y movement
-        movement.y = movementSpeed*Time.fixedDeltaTime;
+        //Counting the time
+        TimeCounter += Time.fixedDeltaTime;
+
+        //Setting circular position coordinates of Mole
+        float PosX = Mathf.Cos(TimeCounter);
+        float PosY = Mathf.Sin(TimeCounter);
+        float PosZ = 0;
+
+        //Circular rotation
+        transform.position = new Vector3(PosX, PosY, PosZ);
 
         //sets the variable for the animator in unity depending on the movement
         animator.SetFloat("Horizontal", movement.x);
