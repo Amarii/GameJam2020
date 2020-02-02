@@ -62,6 +62,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Art\Inventory.cs" />
+    <Compile Include="Assets\Art\InventoryCode.cs" />
     <Compile Include="Assets\Art\TextBoxManager.cs" />
     <Compile Include="Assets\Art\TextImporter.cs" />
     <Compile Include="Assets\MoleMovement.cs" />

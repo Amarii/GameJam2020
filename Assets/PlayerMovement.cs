@@ -10,14 +10,12 @@ public class PlayerMovement : MonoBehaviour
     public float movementSpeed = 5f;
     public Rigidbody2D rb;
     public Animator animator;
+    public int IngredientNumber;
+    public string NewIngredient;
 
     GameObject Inventory;
     GameObject Banana;
     GameObject Croissant;
-    
-    int InventoryNumber;
-    int IngredientNumber;
-    string[] Ingredients;
     Vector2 movement;
 
     // Start is called before the first frame update
@@ -26,9 +24,8 @@ public class PlayerMovement : MonoBehaviour
         Inventory = GameObject.Find("Inventory");
         Banana = GameObject.Find("Banana");
         Croissant = GameObject.Find("Croissant");
-        InventoryNumber = 1;
         IngredientNumber = 0;
-        
+       
     }
     
     // Update is called once per frame
@@ -62,24 +59,11 @@ public class PlayerMovement : MonoBehaviour
         if (colll.gameObject.tag == "Ingredient" && Input.GetKey(KeyCode.X))
         {
             colll.transform.position = new Vector3(Inventory.transform.position.x, Inventory.transform.position.y - 1, -4);
-            CreateInventory();
             IngredientNumber += 1;
-            string NewIngredient = colll.gameObject.name;
-            Ingredients[IngredientNumber] = NewIngredient;
-            print(Ingredients);
         }
         
     }
 
-    //Create new stuff
-    void CreateInventory () //new inventory
-    {
-        if (InventoryNumber < 4)
-        {
-            Inventory = Instantiate(Inventory);
-            Inventory.transform.position = new Vector3(Inventory.transform.position.x + 2, Inventory.transform.position.y, 2);
-            InventoryNumber += 1;
-        }
-    }
+    
 
 }

@@ -10,6 +10,7 @@ public class MoleMovement : MonoBehaviour
   
     Vector2 movement;
     GameObject textBox;
+    GameObject Inventory;
     float TimeCounter=0;                            //circular movement (Circle function)
     float collide = 0;                              // check if mole collides with player                                  
     // Start is called before the first frame update
@@ -17,6 +18,7 @@ public class MoleMovement : MonoBehaviour
     {
         textBox = GameObject.Find("Panel");
         textBox.SetActive(false);
+        Inventory = GameObject.Find("Inventory");
 }
 
     // Update is called once per frame
@@ -55,8 +57,18 @@ public class MoleMovement : MonoBehaviour
         collide = 1;
         if (Input.GetKey(KeyCode.Z))
         {
-            textBox.SetActive(true);
+            if ("Croissant" in Inventory.GetComponent<InventoryCode>().Ingredients)
+            {
+                textBox.SetActive(true);
+            }
+            
         }
+        
+    }
+
+    //Check if necessary ingredients are presents
+    void CheckIngredients()
+    {
         
     }
 
