@@ -16,6 +16,7 @@ public class TextBoxManager : MonoBehaviour
     public int endAtLine;
 
     public CharacterController player;
+    bool medicine;
 
     // Start is called before the first frame update
     void Start()
@@ -30,12 +31,14 @@ public class TextBoxManager : MonoBehaviour
         {
             endAtLine = textLines.Length -1;
         }
+        medicine = Instantiate(GameObject.Find("Mole")).GetComponent<MoleMovement>().medicine;
+        textBox = GameObject.Find("Panel");
+        
     }
 
     private void Update()
     {
-        theText.text = textLines[currentLine];
-
+        
         if (Input.GetKeyDown(KeyCode.Return))
         {
             currentLine += 1;
@@ -44,5 +47,19 @@ public class TextBoxManager : MonoBehaviour
         {
             textBox.SetActive(false);
         }
+        if(Input.GetKey(KeyCode.Z))
+        {
+            
+            if (medicine == true)
+            {
+                currentLine = 10;
+                theText.text = textLines[currentLine];
+            }
+            else
+            {
+                theText.text = textLines[currentLine];
+            }
+        }
     }
+
 }

@@ -7,18 +7,22 @@ public class MoleMovement : MonoBehaviour
     public float movementSpeed = 5f;
     public Animator animator;
     public Rigidbody2D rb;
+    public bool medicine;
   
     Vector2 movement;
     GameObject textBox;
-    GameObject Inventory;
+    InventoryCode proxyinventory;
+
     float TimeCounter=0;                            //circular movement (Circle function)
     float collide = 0;                              // check if mole collides with player                                  
     // Start is called before the first frame update
     void Start()
     {
-        textBox = GameObject.Find("Panel");
+        textBox = Instantiate(GameObject.Find("Panel"));
         textBox.SetActive(false);
-        Inventory = GameObject.Find("Inventory");
+        proxyinventory = GetComponent<InventoryCode>();
+        medicine = false;
+       
 }
 
     // Update is called once per frame
@@ -32,8 +36,7 @@ public class MoleMovement : MonoBehaviour
         {
 
         }
-                                                      
-            
+       
         //sets the variable for the animator in unity depending on the movement
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
@@ -55,21 +58,25 @@ public class MoleMovement : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         collide = 1;
-        if (Input.GetKey(KeyCode.Z))
-        {
-            if ("Croissant" in Inventory.GetComponent<InventoryCode>().Ingredients)
-            {
-                textBox.SetActive(true);
-            }
-            
-        }
+        CheckIngredients();                                 //Check if there can be medicine or not
         
     }
 
     //Check if necessary ingredients are presents
     void CheckIngredients()
     {
-        
+        if (Input.GetKey(KeyCode.Z))
+        {
+            if (proxyinventory.Ingredients.Contains("Croissant"))
+            {
+                medicine = true;
+            }
+            else
+            {
+                medicine = false;
+            }
+
+        }
     }
 
 }
