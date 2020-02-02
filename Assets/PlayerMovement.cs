@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class PlayerMovement : MonoBehaviour
@@ -12,19 +13,24 @@ public class PlayerMovement : MonoBehaviour
 
     GameObject Inventory;
     GameObject Banana;
-    float IngredientNumber;
-    float InventoryNumber;
+    GameObject Croissant;
+    
+    int InventoryNumber;
+    int IngredientNumber;
+    string[] Ingredients;
     Vector2 movement;
+
     // Start is called before the first frame update
     void Start()
     {
         Inventory = GameObject.Find("Inventory");
         Banana = GameObject.Find("Banana");
+        Croissant = GameObject.Find("Croissant");
         InventoryNumber = 1;
         IngredientNumber = 0;
         
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -43,46 +49,26 @@ public class PlayerMovement : MonoBehaviour
         //actual movement of character is being done here to avoid frame rate issues
         rb.MovePosition(rb.position + movement * movementSpeed * Time.fixedDeltaTime);
     }
-    
+
     //Functions for finding ingredients in objects
-    private void OnCollisionEnter2D(Collision2D colll)
-    {
-        if (colll.gameObject.tag == "Ingredient" && Input.GetKey(KeyCode.Z))
-        {
-            colll.transform.position = new Vector3(transform.position.x, transform.position.y, -4);
-            CreateBanana();
-
-
-        }
-        if (colll.gameObject.tag == "Ingredient" && Input.GetKey(KeyCode.X))
-        {
-            colll.transform.position = new Vector3(Inventory.transform.position.x, Inventory.transform.position.y-1, -4);
-            IngredientNumber += 1;
-            CreateInventory();
-
-
-        }
-        if (colll.gameObject.tag == "Creature" && Input.GetKey(KeyCode.Z))
-        {
-            print("GeGroet");
-            
-        }
-    }
     private void OnCollisionStay2D(Collision2D colll)
     {
+
         if (colll.gameObject.tag == "Ingredient" && Input.GetKey(KeyCode.Z))
         {
             colll.transform.position = new Vector3(transform.position.x, transform.position.y, -4);
-            CreateBanana();
         }
+        
         if (colll.gameObject.tag == "Ingredient" && Input.GetKey(KeyCode.X))
         {
             colll.transform.position = new Vector3(Inventory.transform.position.x, Inventory.transform.position.y - 1, -4);
-            IngredientNumber += 1;
             CreateInventory();
-
-
+            IngredientNumber += 1;
+            string NewIngredient = colll.gameObject.name;
+            Ingredients[IngredientNumber] = NewIngredient;
+            print(Ingredients);
         }
+        
     }
 
     //Create new stuff
@@ -95,8 +81,5 @@ public class PlayerMovement : MonoBehaviour
             InventoryNumber += 1;
         }
     }
-    void CreateBanana ()
-    {
-        Banana = Instantiate(Banana);
-    }
+
 }

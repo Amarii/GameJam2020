@@ -9,12 +9,14 @@ public class MoleMovement : MonoBehaviour
     public Rigidbody2D rb;
   
     Vector2 movement;
+    GameObject textBox;
     float TimeCounter=0;                            //circular movement (Circle function)
     float collide = 0;                              // check if mole collides with player                                  
     // Start is called before the first frame update
     void Start()
     {
-
+        textBox = GameObject.Find("Panel");
+        textBox.SetActive(false);
 }
 
     // Update is called once per frame
@@ -48,9 +50,14 @@ public class MoleMovement : MonoBehaviour
     }
 
     //Checks if objects collide
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         collide = 1;
+        if (Input.GetKey(KeyCode.Z))
+        {
+            textBox.SetActive(true);
+        }
+        
     }
 
 }

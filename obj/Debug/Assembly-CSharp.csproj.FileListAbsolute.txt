@@ -270,3 +270,5 @@ C:\Users\Rainb\Documents\GitHub\GameJam2020\obj\Debug\Assembly-CSharp.csproj.Cor
 C:\Users\Rainb\Documents\GitHub\GameJam2020\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 C:\Users\Rainb\Documents\GitHub\GameJam2020\obj\Debug\Assembly-CSharp.dll
 C:\Users\Rainb\Documents\GitHub\GameJam2020\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Rainb\Documents\GitHub\GameJam2020\Temp\bin\Debug\Unity.2D.Sprite.Editor.dll
+C:\Users\Rainb\Documents\GitHub\GameJam2020\Temp\bin\Debug\Unity.2D.Sprite.Editor.pdb
