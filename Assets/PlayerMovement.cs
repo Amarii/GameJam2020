@@ -10,15 +10,16 @@ public class PlayerMovement : MonoBehaviour
     public float movementSpeed = 5f;
     public Rigidbody2D rb;
     public Animator animator;
-    public int IngredientNumber;
+    //public int IngredientNumber;
     public string NewIngredient;
-    public Vector3 InventoryPlayerPos;
+    public bool TakeItem;
+    public bool FindItem;
+    public string Item;
+    public Vector2 ItemPos;
 
-    Vector2 Inventory;
+
     GameObject Banana;
     GameObject Croissant;
-    GameObject InventoryBox;
-    GameObject InventoryBox2;
     Vector2 movement;
 
     // Start is called before the first frame update
@@ -26,10 +27,9 @@ public class PlayerMovement : MonoBehaviour
     {
         Banana = Instantiate(GameObject.Find("Banana"));
         Croissant = Instantiate(GameObject.Find("Croissant"));
-        IngredientNumber = 0;
-        InventoryPlayerPos = new Vector3(-3, -2, 2);
-        InventoryBox = Instantiate(GameObject.Find("Inventory"));
-        InventoryBox2 = GameObject.Find("Inventory");
+        //IngredientNumber = 0;
+        FindItem = false;
+        TakeItem = false;
     }
     
     // Update is called once per frame
@@ -55,16 +55,19 @@ public class PlayerMovement : MonoBehaviour
     //Functions for finding ingredients in objects
     private void OnCollisionStay2D(Collision2D colll)
     {
-        Inventory = InventoryBox.GetComponent<InventoryCode>().Inventorypos;
         if (colll.gameObject.tag == "Ingredient" && Input.GetKey(KeyCode.Z))
         {
-            InventoryPlayerPos = new Vector3(transform.position.x, transform.position.y, -4);
+            FindItem = true;
+            Item = colll.gameObject.name;
+            ItemPos = colll.transform.position;
+
         }
         
         if (colll.gameObject.tag == "Ingredient" && Input.GetKey(KeyCode.X))
         {
-            InventoryPlayerPos = new Vector3(Inventory.x, Inventory.y - 1, -4);
-            IngredientNumber += 1;
+            TakeItem = true;
+            Item = colll.gameObject.name;
+            ItemPos = colll.transform.position;
         }
         
     }

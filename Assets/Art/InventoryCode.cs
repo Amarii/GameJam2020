@@ -1,52 +1,63 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryCode : MonoBehaviour
 {
     public int NumberIngredients;
-    public string Ingredients;
-    public GameObject Inventory;
-    public Vector2 Inventorypos;
+    string ingredientType;
+    Vector2 Inventorypos;
 
-    int IngredientNumber;
-    int InventoryNumber;
-    Vector3 InventoryPPos;
     GameObject Player;
     PlayerMovement playertraits;
+    bool TakeItem;
+    bool FindItem;
+    string Item;
+    double index;
+
+    public GameObject[] Ingredients;
+    Vector2 ItemPos;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        Player = Instantiate(GameObject.Find("Hero"));
-        Inventory = Instantiate(GameObject.Find("Inventory"));
+        Player = GameObject.Find("Hero");
+
         NumberIngredients = 0;
-        Ingredients = Instantiate(Player).GetComponent<PlayerMovement>().NewIngredient;
-        IngredientNumber = Instantiate(Player).GetComponent<PlayerMovement>().IngredientNumber;
-        Inventorypos = new Vector2(-3, -2);
-        InventoryPPos = Player.GetComponent<PlayerMovement>().InventoryPlayerPos;
+        Inventorypos = new Vector2(-4, -4);
+        index = 1;
     }
 
-    private void Update()
+    void Update()
     {
-        if (Input.GetKey(KeyCode.X)) 
+
+        FindItem = Player.GetComponent<PlayerMovement>().FindItem;
+        TakeItem = Player.GetComponent<PlayerMovement>().TakeItem;
+        Item = Player.GetComponent<PlayerMovement>().Item;
+        ItemPos = Player.GetComponent<PlayerMovement>().ItemPos;
+
+
+        if (TakeItem == true) //X
         {
-            CreateInventory();
-            //Destroy(Player);
+            
+            Inventorypos = new Vector2(-3, -1);
+            print(Inventorypos);
+            GameObject.Find(name).transform.position = new Vector3(Inventorypos.x, Inventorypos.y,-4);
+            TakeItem = false;
+
+        }
+
+        if(FindItem == true) //Z
+        {
+            GameObject.Find(Item).transform.position = new Vector3(ItemPos.x, ItemPos.y, -4);
+            FindItem = false;
+
         }
     }
 
-    //Create new stuff
-    void CreateInventory() //new inventory
-    {
-        if (InventoryNumber < 4)
-        {
-            Inventory.transform.position = InventoryPPos;
-            Inventorypos = new Vector2(Inventory.transform.position.x + 2, Inventory.transform.position.y);
-            InventoryNumber += 1;
-        }
-        print("Too many ingredients!");
-    }
+    
+    
 
 }

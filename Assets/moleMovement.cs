@@ -11,7 +11,7 @@ public class MoleMovement : MonoBehaviour
   
     Vector2 movement;
     GameObject textBox;
-    InventoryCode proxyinventory;
+    GameObject proxyinventory;
 
     float TimeCounter=0;                            //circular movement (Circle function)
     float collide = 0;                              // check if mole collides with player                                  
@@ -20,7 +20,7 @@ public class MoleMovement : MonoBehaviour
     {
         textBox = Instantiate(GameObject.Find("Panel"));
         textBox.SetActive(false);
-        proxyinventory = GetComponent<InventoryCode>();
+        proxyinventory = GameObject.Find("Inventory1");
         medicine = false;
        
 }
@@ -58,25 +58,30 @@ public class MoleMovement : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         collide = 1;
-        CheckIngredients();                                 //Check if there can be medicine or not
+/*        CheckIngredients();    */                             //Check if there can be medicine or not
         
     }
 
     //Check if necessary ingredients are presents
     void CheckIngredients()
     {
-        if (Input.GetKey(KeyCode.Z))
-        {
-            if (proxyinventory.Ingredients.Contains("Croissant"))
-            {
-                medicine = true;
-            }
-            else
-            {
-                medicine = false;
-            }
+        //if (Input.GetKey(KeyCode.Z))
+        //{
+        //    int i = 0;
+        //    for (i=0;i<4;i++)
+        //    {
+        //        if (proxyinventory.GetComponent<InventoryCode>().name.Contains("Croissant"))
+        //        {
+        //            medicine = true;
+        //        }
+        //        else
+        //        {
+        //            medicine = false;
+        //        }
+        //    }
+            
 
-        }
+        //}
     }
 
 }
