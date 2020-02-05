@@ -17,16 +17,12 @@ public class PlayerMovement : MonoBehaviour
     public string Item;
     public Vector2 ItemPos;
 
-
-    GameObject Banana;
-    GameObject Croissant;
     Vector2 movement;
 
     // Start is called before the first frame update
     void Start()
     {
-        Banana = Instantiate(GameObject.Find("Banana"));
-        Croissant = Instantiate(GameObject.Find("Croissant"));
+
         //IngredientNumber = 0;
         FindItem = false;
         TakeItem = false;

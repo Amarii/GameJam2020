@@ -43,16 +43,16 @@ public class MoleMovement : MonoBehaviour
         animator.SetFloat("Speed", movement.sqrMagnitude);
     }
 
-    void Circle()
-    {
-        TimeCounter += Time.fixedDeltaTime;                     //Counting the time 
-                                                                //Setting circular position coordinates of Mole    
-        float PosX = Mathf.Cos(TimeCounter);
-        float PosY = Mathf.Sin(TimeCounter);
+    //void Circle()
+    //{
+    //    TimeCounter += Time.fixedDeltaTime;                     //Counting the time 
+    //                                                            //Setting circular position coordinates of Mole    
+    //    float PosX = Mathf.Cos(TimeCounter);
+    //    float PosY = Mathf.Sin(TimeCounter);
 
-        //Circular rotation
-        transform.position = new Vector2(PosX, PosY);
-    }
+    //    //Circular rotation
+    //    transform.position = new Vector2(PosX, PosY);
+    //}
 
     //Checks if objects collide
     private void OnCollisionStay2D(Collision2D collision)

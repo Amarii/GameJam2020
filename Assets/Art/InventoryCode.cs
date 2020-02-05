@@ -7,16 +7,15 @@ public class InventoryCode : MonoBehaviour
 {
     public int NumberIngredients;
     string ingredientType;
-    Vector2 Inventorypos;
 
     GameObject Player;
+    GameObject Banana;
+    GameObject Croissant;
     PlayerMovement playertraits;
     bool TakeItem;
     bool FindItem;
     string Item;
-    double index;
 
-    public GameObject[] Ingredients;
     Vector2 ItemPos;
 
 
@@ -24,10 +23,10 @@ public class InventoryCode : MonoBehaviour
     void Start()
     {
         Player = GameObject.Find("Hero");
+        Banana = GameObject.Find("Banana");
+        Croissant = GameObject.Find("Croissant");
 
         NumberIngredients = 0;
-        Inventorypos = new Vector2(-4, -4);
-        index = 1;
     }
 
     void Update()
@@ -41,18 +40,29 @@ public class InventoryCode : MonoBehaviour
 
         if (TakeItem == true) //X
         {
+
+            print(NumberIngredients);
+            if (NumberIngredients == 1)
+            {
+                ItemPos = new Vector2(-4.0f, -4.0f);
+            }
+            if(NumberIngredients == 2)
+            {
+                ItemPos = new Vector2(-2.5f, -4.0f);
+            }
             
-            Inventorypos = new Vector2(-3, -1);
-            print(Inventorypos);
-            GameObject.Find(name).transform.position = new Vector3(Inventorypos.x, Inventorypos.y,-4);
+            GameObject Ingredient = GameObject.Find(Item);
+            Ingredient.transform.position = new Vector3(ItemPos.x, ItemPos.y,-4);
             TakeItem = false;
 
         }
 
         if(FindItem == true) //Z
         {
-            GameObject.Find(Item).transform.position = new Vector3(ItemPos.x, ItemPos.y, -4);
+            GameObject Ingredient = GameObject.Find(Item);
+            Ingredient.transform.position = new Vector3(ItemPos.x, ItemPos.y, -4);
             FindItem = false;
+            NumberIngredients += 1;
 
         }
     }
